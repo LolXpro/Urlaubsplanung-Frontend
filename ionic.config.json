@@ -1,0 +1,8 @@
+{
+  "name": "Urlaubsplanung",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "4a8e5578"
+}
