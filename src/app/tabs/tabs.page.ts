@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +8,10 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private keycloakService: KeycloakService) {}
+
+  public logout(){
+    this.keycloakService.logout()
+  }
 
 }
