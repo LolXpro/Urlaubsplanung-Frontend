@@ -7,11 +7,45 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-title>Urlaubstyp<ion-badge>*</ion-badge></ion-card-title>
+    <ion-card-content>
+      <ion-select placeholder="Urlaubstyp wählen" [(ngModel)]="typeVal">
+        <ion-select-option value="normal">Normaler Urlaub</ion-select-option>
+        <ion-select-option value="special">Sonderurlaub</ion-select-option>
+      </ion-select>
+    </ion-card-content>
+  </ion-card>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-card>
+    <ion-card-title>Zeitraum<ion-badge>*</ion-badge></ion-card-title>
+    <ion-card-content>
+      <ion-label slot="left">Von:</ion-label>
+      <ion-datetime-button datetime="from" slot="left"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="from" presentation="date" [(ngModel)]="fromDate" (ionChange)="toDate = fromDate" show-default-buttons="true"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+
+      <ion-label slot="left">Bis:</ion-label>
+      <ion-datetime-button datetime="to" slot="left"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="to" presentation="date" [(ngModel)]="toDate" [min]="fromDate" show-default-buttons="true"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-card-content>
+  </ion-card>
+  <ion-card>
+    <ion-card-title>Beschreibung</ion-card-title>
+    <ion-card-content>
+      <ion-textarea placeholder="Hier Beschreibung eingeben" [(ngModel)]="description"></ion-textarea>
+    </ion-card-content>
+  </ion-card>
+  <ion-buttons>
+    <ion-button color="danger" (click)="cancel()" routerLink="../tab1"><ion-label>Zurück</ion-label></ion-button>
+    <ion-button color="success" (click)="submit()"><ion-label>Absenden</ion-label></ion-button>
+  </ion-buttons>
+
 </ion-content>
