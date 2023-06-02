@@ -14,4 +14,7 @@ export class TabsPage {
     this.keycloakService.logout()
   }
 
+  hasRole(reqRole: string) {
+    return this.keycloakService.getUserRoles().includes(reqRole)
+  }
 }

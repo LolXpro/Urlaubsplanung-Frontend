@@ -11,7 +11,7 @@
       <ion-label>Urlaub einreichen</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="tab3">
+    <ion-tab-button tab="tab3" [hidden]="!hasRole('admin')">
       <ion-icon aria-hidden="true" name="square"></ion-icon>
       <ion-label>Eingereichte Urlaube</ion-label>
     </ion-tab-button>
