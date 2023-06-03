@@ -6,8 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-
-  typeVal: string | undefined;
+  typeVal: boolean = false;
   fromDate: Date | undefined;
   toDate: Date | undefined;
   description: string | undefined;
@@ -16,10 +15,11 @@ export class Tab2Page {
 
   public submit(){
     console.log(this.typeVal, this.fromDate, this.toDate, this.description)
+    this.reset();
   }
 
-  public cancel() {
-    this.typeVal = ''
+  public reset() {
+    this.typeVal = false
     this.fromDate = undefined
     this.toDate = undefined
     this.description = undefined;

@@ -8,12 +8,9 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-title>Urlaubstyp<ion-badge>*</ion-badge></ion-card-title>
+    <ion-card-title>Urlaubstyp</ion-card-title>
     <ion-card-content>
-      <ion-select placeholder="Urlaubstyp wählen" [(ngModel)]="typeVal">
-        <ion-select-option value="normal">Normaler Urlaub</ion-select-option>
-        <ion-select-option value="special">Sonderurlaub</ion-select-option>
-      </ion-select>
+      <ion-toggle [(ngModel)]="typeVal">Sonderurlaub</ion-toggle><br /><br />
     </ion-card-content>
   </ion-card>
 
@@ -44,8 +41,8 @@
     </ion-card-content>
   </ion-card>
   <ion-buttons>
-    <ion-button color="danger" (click)="cancel()" routerLink="../tab1"><ion-label>Zurück</ion-label></ion-button>
-    <ion-button color="success" (click)="submit()"><ion-label>Absenden</ion-label></ion-button>
+    <ion-button color="danger" (click)="reset()" routerLink="../tab1"><ion-label>Zurück</ion-label></ion-button>
+    <ion-button color="success" (click)="submit()" routerLink="../tab1"><ion-label>Absenden</ion-label></ion-button>
   </ion-buttons>
 
 </ion-content>
