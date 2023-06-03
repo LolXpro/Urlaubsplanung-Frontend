@@ -10,7 +10,10 @@
   <ion-card>
     <ion-card-title>Urlaubstyp</ion-card-title>
     <ion-card-content>
-      <ion-toggle [(ngModel)]="typeVal">Sonderurlaub</ion-toggle><br /><br />
+      <ion-radio-group [(ngModel)]="typeVal">
+        <ion-radio value="urlaub" labelPlacement="end">Urlaub</ion-radio><br />
+        <ion-radio value="sonderurlaub" labelPlacement="end">Sonderurlaub</ion-radio>
+      </ion-radio-group>
     </ion-card-content>
   </ion-card>
 

@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  typeVal: boolean = false;
+  typeVal: string = 'urlaub';
   fromDate: Date | undefined;
   toDate: Date | undefined;
   description: string | undefined;
@@ -19,7 +19,7 @@ export class Tab2Page {
   }
 
   public reset() {
-    this.typeVal = false
+    this.typeVal = 'urlaub'
     this.fromDate = undefined
     this.toDate = undefined
     this.description = undefined;

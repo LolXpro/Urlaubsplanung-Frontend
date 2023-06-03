@@ -7,8 +7,14 @@ import {KeycloakService} from "keycloak-angular";
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
+  vacationList: Array<any>
 
-  constructor(private keycloakService: KeycloakService) {}
+  constructor(private keycloakService: KeycloakService) {
+  this.vacationList = [
+                        { state: 'Genehmigt', startDate: '2023-06-01', endDate: '2023-06-05' },
+                        { state: 'Abgelehnt', startDate: '2023-06-10', endDate: '2023-06-15' }
+                      ];
+  }
 
   public getUsername(){
     return this.keycloakService.getUsername()

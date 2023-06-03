@@ -8,6 +8,24 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-title>Hallo {{getUsername()}}</ion-card-title>
+    <ion-card-title>Willkommen {{getUsername()}}!</ion-card-title>
+    <br />
+    <ion-card-subtitle>Hier deine Urlaubsübersicht:</ion-card-subtitle>
+
+    <ion-card-content>
+      <ion-grid [fixed]="true">
+        <ion-row>
+          <ion-col class="gridHeader">Status:</ion-col>
+          <ion-col class="gridHeader">Erster Urlaubstag:</ion-col>
+          <ion-col class="gridHeader">Letzter Urlaubstag:</ion-col>
+        </ion-row>
+
+        <ion-row *ngFor="let vacation of vacationList">
+          <ion-col>{{ vacation.state }}</ion-col>
+          <ion-col>{{ vacation.startDate }}</ion-col>
+          <ion-col>{{ vacation.endDate }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
   </ion-card>
 </ion-content>
