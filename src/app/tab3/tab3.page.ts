@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import {delay} from "rxjs";
+import {Observable} from "rxjs";
+import {UrlaubsServiceService} from "../shared/service/urlaubs-service.service";
+import {Urlaub} from "../models/urlaub";
 
 @Component({
   selector: 'app-tab3',
@@ -7,47 +9,44 @@ import {delay} from "rxjs";
   styleUrls: ['tab3.page.scss']
 })
 export class Tab3Page {
-  toEditVacationList: Array<any>;
-  vacationList: Array<any>;
-  constructor() {
-    this.toEditVacationList = this.getToEditVacationList();
-    this.vacationList = this.getVacationList();
 
+  urlaubsListeBearbeitung$: Observable<Urlaub[]>;
+  urlaubsListeGenehmigt$: Observable<Urlaub[]>;
+
+  constructor(private urlaubsService: UrlaubsServiceService) {
+    this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
+    this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
   }
 
-  getToEditVacationList(){
-    //Get-Methode zum befüllen des Arrays für die "zu bearbeitenden Urlaube" hier einfügen
-    return [
-      { startDate: '2023-06-01', endDate: '2023-06-05', attribute: 'Attribute 1' },
-      { startDate: '2023-06-10', endDate: '2023-06-15', attribute: 'Attribute 2' }
-    ];
-  }
-
-  getVacationList(){
-    //Get-Methode zum befüllen des Arrays für die "zu bearbeitenden Urlaube" hier einfügen
-    return [
-      { startDate: '2023-06-01', endDate: '2023-06-05', attribute: 'Attribute 1' },
-      { startDate: '2023-06-10', endDate: '2023-06-15', attribute: 'Attribute 2' }
-    ];
+  public getUrlaube(status?: string): Observable<Urlaub[]>{
+    return this.urlaubsService.getUrlaube(status)
   }
 
 
   acceptVacation(vacation: any) {
+    this.urlaubsService.putUrlaubStatus(vacation.id, "genehmigt")
+    this.updateData();
     // Logik für das Akzeptieren des Urlaubs hier ausführen
     console.log('Urlaub akzeptiert:', vacation);
   }
 
   rejectVacation(vacation: any) {
+    this.urlaubsService.putUrlaubStatus(vacation.id, "abgelehnt")
+    this.updateData();
     // Index des Urlaubs in der vacationList finden
-    const index = this.toEditVacationList.indexOf(vacation);
-
-    // Wenn der Index gefunden wurde
-    if (index > -1) {
-      // Den Urlaub aus der vacationList entfernen
-      this.toEditVacationList.splice(index, 1);
-      console.log('Urlaub abgelehnt:', vacation);
-    }else {
-      console.log('Urlaub ablehnung fehlgeschlagen:', vacation);
-    }
+    console.log('Urlaub abgelehnt:', vacation);
   }
+
+  updateData(){
+    this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
+    this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
+  }
+
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.updateData();
+      event.target.complete();
+    }, 2000);
+  }
+
 }

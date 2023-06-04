@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {KeycloakAngularModule, KeycloakService} from "keycloak-angular";
+import {HttpClientModule} from "@angular/common/http";
 
 function initializeKeycloak(keycloak: KeycloakService) {
   return () =>
@@ -27,7 +28,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, KeycloakAngularModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, KeycloakAngularModule, HttpClientModule],
   providers: [{ provide: APP_INITIALIZER, useFactory: initializeKeycloak, multi: true, deps: [KeycloakService], useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
