@@ -18,7 +18,7 @@
   </ion-card>
 
   <ion-card>
-    <ion-card-title>Zeitraum<ion-badge>*</ion-badge></ion-card-title>
+    <ion-card-title>Zeitraum<span style="color: #FF0000;">*</span></ion-card-title>
     <ion-card-content>
       <ion-label slot="left">Von:</ion-label>
       <ion-datetime-button datetime="from" slot="left"></ion-datetime-button>
@@ -44,8 +44,8 @@
     </ion-card-content>
   </ion-card>
   <ion-buttons>
-    <ion-button color="danger" (click)="reset()" routerLink="../tab1"><ion-label>Zurück</ion-label></ion-button>
-    <ion-button color="success" (click)="submit()" routerLink="../tab1"><ion-label>Absenden</ion-label></ion-button>
+    <ion-button color="danger" (click)="reset()" routerLink="../tab1"><ion-label>Abbrechen</ion-label></ion-button>
+    <ion-button color="success" (click)="submit()" routerLink="../tab1"><ion-label>Beantragen</ion-label></ion-button>
   </ion-buttons>
 
 </ion-content>

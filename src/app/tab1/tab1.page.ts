@@ -12,7 +12,8 @@ export class Tab1Page {
   constructor(private keycloakService: KeycloakService) {
   this.vacationList = [
                         { state: 'Genehmigt', startDate: '2023-06-01', endDate: '2023-06-05' },
-                        { state: 'Abgelehnt', startDate: '2023-06-10', endDate: '2023-06-15' }
+                        { state: 'Abgelehnt', startDate: '2023-06-10', endDate: '2023-06-15' },
+                        { state: 'In Bearbeitung', startDate: '2023-07-05', endDate: '2023-07-08' }
                       ];
   }
 

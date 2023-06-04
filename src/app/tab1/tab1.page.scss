@@ -3,15 +3,33 @@ ion-card {
 }
 
 ion-col {
-  background-color: #135d54;
-  border: solid 1px #fff;
-  color: #fff;
-  text-align: center;
+  border: solid 1px #000;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grayRow {
+  background-color: #E4E4E4;
+}
+
+.whiteRow {
+  background-color: #FFFFFF;
 }
 
 .gridHeader {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
   text-decoration: underline;
   padding: 1em 0em;
+  background-color: #E4E4E4;
+}
+
+.vacationStateApproved {
+  color: #28A745;
+}
+
+.vacationStateRejected {
+  color: #FFC107;
 }

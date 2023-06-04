@@ -8,22 +8,32 @@
 
 <ion-content [fullscreen]="true">
   <ion-card>
-    <ion-card-title>Willkommen {{getUsername()}}!</ion-card-title>
-    <br />
+    <ion-card-title>Willkommen {{getUsername()}}!</ion-card-title><br />
     <ion-card-subtitle>Hier deine Urlaubsübersicht:</ion-card-subtitle>
 
     <ion-card-content>
+      <p>Urlaubstage verbleibend: </p>
+      <p>Sonderurlabustage verbleibend: </p>
+      <br />
+
       <ion-grid [fixed]="true">
         <ion-row>
           <ion-col class="gridHeader">Status:</ion-col>
           <ion-col class="gridHeader">Erster Urlaubstag:</ion-col>
           <ion-col class="gridHeader">Letzter Urlaubstag:</ion-col>
+          <ion-col class="gridHeader">Summe Urlaubstage:</ion-col>
+          <ion-col class="gridHeader">Aktion:</ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let vacation of vacationList">
-          <ion-col>{{ vacation.state }}</ion-col>
+        <ion-row *ngFor="let vacation of vacationList; let i=index" [ngClass]="{'whiteRow': i % 2 === 0, 'grayRow': i % 2 !== 0}">
+          <ion-col [class]="vacation.state == 'Genehmigt'? 'vacationStateApproved': 'vacationStateRejected'">{{ vacation.state }}</ion-col>
           <ion-col>{{ vacation.startDate }}</ion-col>
           <ion-col>{{ vacation.endDate }}</ion-col>
+          <ion-col>Tage</ion-col>
+          <ion-col>
+            <ion-button color="danger">
+              <ion-icon slot="start" name="trash"></ion-icon> Löschen</ion-button>
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-card-content>
