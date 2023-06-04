@@ -7,13 +7,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
   <ion-card>
     <ion-card-title>Willkommen {{getUsername()}}!</ion-card-title><br />
     <ion-card-subtitle>Hier deine Urlaubsübersicht:</ion-card-subtitle>
 
     <ion-card-content>
-      <p>Urlaubstage verbleibend: </p>
-      <p>Sonderurlabustage verbleibend: </p>
+      <p>Urlaubstage verbleibend: {{getvacationdays()}}</p>
+      <p>Sonderurlabustage verbleibend: {{getspecialvacationdays()}}</p>
       <br />
 
       <ion-grid [fixed]="true">
@@ -25,16 +28,43 @@
           <ion-col class="gridHeader">Aktion:</ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let vacation of vacationList; let i=index" [ngClass]="{'whiteRow': i % 2 === 0, 'grayRow': i % 2 !== 0}">
-          <ion-col [class]="vacation.state == 'Genehmigt'? 'vacationStateApproved': 'vacationStateRejected'">{{ vacation.state }}</ion-col>
-          <ion-col>{{ vacation.startDate }}</ion-col>
-          <ion-col>{{ vacation.endDate }}</ion-col>
-          <ion-col>Tage</ion-col>
-          <ion-col>
-            <ion-button color="danger">
-              <ion-icon slot="start" name="trash"></ion-icon> Löschen</ion-button>
-          </ion-col>
-        </ion-row>
+        <ng-container *ngIf="urlaubsListeBearbeitung$ | async as urlaube" >
+          <ion-row *ngFor="let vacation of urlaube; let i=index" [ngClass]="{'whiteRow': i % 2 === 0, 'grayRow': i % 2 !== 0}">
+            <ion-col class="vacationStatePending">{{ vacation.status }}</ion-col>
+            <ion-col>{{ vacation.startDate }}</ion-col>
+            <ion-col>{{ vacation.endDate }}</ion-col>
+            <ion-col>Tage</ion-col>
+            <ion-col>
+              <ion-button color="danger">
+                <ion-icon slot="start" name="trash"></ion-icon> Löschen</ion-button>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+
+
+        <ng-container *ngIf="urlaubsListeGenehmigt$ | async as urlaube" >
+          <ion-row *ngFor="let vacation of urlaube; let i=index" [ngClass]="{'whiteRow': i % 2 === 0, 'grayRow': i % 2 !== 0}">
+            <ion-col class="vacationStateApproved">{{ vacation.status }}</ion-col>
+            <ion-col>{{ vacation.startDate }}</ion-col>
+            <ion-col>{{ vacation.endDate }}</ion-col>
+            <ion-col>Tage</ion-col>
+            <ion-col>
+              <ion-button color="danger" (click)="rejectVacation(vacation)">
+                <ion-icon slot="start" name="trash"></ion-icon> Löschen</ion-button>
+            </ion-col>
+          </ion-row>
+        </ng-container>
+
+        <ng-container *ngIf="urlaubsListeAbgelehnt$ | async as urlaube" >
+          <ion-row *ngFor="let vacation of urlaube; let i=index" [ngClass]="{'whiteRow': i % 2 === 0, 'grayRow': i % 2 !== 0}">
+            <ion-col class="vacationStateRejected">{{ vacation.status }}</ion-col>
+            <ion-col>{{ vacation.startDate }}</ion-col>
+            <ion-col>{{ vacation.endDate }}</ion-col>
+            <ion-col>Tage</ion-col>
+            <ion-col></ion-col>
+          </ion-row>
+        </ng-container>
+
       </ion-grid>
     </ion-card-content>
   </ion-card>

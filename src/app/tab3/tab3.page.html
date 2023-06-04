@@ -15,26 +15,25 @@
     <ion-card-content>
       <ion-list>
 
-        <ion-item-sliding *ngFor="let vacation of urlaube">
+        <ion-item-sliding *ngFor="let urlaub of urlaube">
           <ion-item>
-            <!-- Urlaubsdaten anzeigen -->
-            <ion-label>
-              {{ vacation.startDate }} - {{ vacation.endDate }}
-            </ion-label>
-            <!-- Weitere Attribute anzeigen -->
-            <ion-label slot="end">{{ vacation.username }}</ion-label>
+            <ion-label>Angestellter: {{urlaub.username}}</ion-label>
+            <ion-label>Startdatum: {{urlaub.startDate}}</ion-label>
+            <ion-label>Enddatum: {{urlaub.endDate}}</ion-label>
+            <ion-label>Urlaubstyp: {{urlaub.type}}</ion-label>
+            <ion-label>Beschreibung: {{urlaub.description}}</ion-label>
           </ion-item>
 
-          <ion-item-options side="start" (ionSwipe)="rejectVacation(vacation)">
+          <ion-item-options side="start" (ionSwipe)="rejectVacation(urlaub)">
             <!-- Option zum Ablehnen -->
-            <ion-item-option color="danger" expandable (click)="rejectVacation(vacation)">
+            <ion-item-option color="danger" expandable (click)="rejectVacation(urlaub)">
               Ablehnen
             </ion-item-option>
           </ion-item-options>
 
-          <ion-item-options side="end" (ionSwipe)="acceptVacation(vacation)">
+          <ion-item-options side="end" (ionSwipe)="acceptVacation(urlaub)">
             <!-- Option zum Akzeptieren -->
-            <ion-item-option color="success" expandable (click)="acceptVacation(vacation)">
+            <ion-item-option color="success" expandable (click)="acceptVacation(urlaub)">
               Akzeptieren
             </ion-item-option>
           </ion-item-options>
@@ -51,6 +50,8 @@
           <ion-label>Angestellter: {{urlaub.username}}</ion-label>
           <ion-label>Startdatum: {{urlaub.startDate}}</ion-label>
           <ion-label>Enddatum: {{urlaub.endDate}}</ion-label>
+          <ion-label>Urlaubstyp: {{urlaub.type}}</ion-label>
+          <ion-label>Beschreibung: {{urlaub.description}}</ion-label>
 
 
           <!--          &lt;!&ndash; Urlaubsdaten anzeigen &ndash;&gt;-->

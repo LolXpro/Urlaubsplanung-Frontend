@@ -24,4 +24,10 @@ export class Tab2Page {
     this.toDate = undefined
     this.description = undefined;
   }
+  handleRefresh(event:any) {
+    setTimeout(() => {
+      this.reset();
+      event.target.complete();
+    }, 20);
+  }
 }
