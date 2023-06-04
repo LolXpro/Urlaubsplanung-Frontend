@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {UrlaubsServiceService} from "../shared/service/urlaubs-service.service";
+import {KeycloakService} from "keycloak-angular";
 
 @Component({
   selector: 'app-tab2',
@@ -11,10 +13,18 @@ export class Tab2Page {
   toDate: Date | undefined;
   description: string | undefined;
 
-  constructor() {
+  constructor(private keycloakService: KeycloakService, private urlaubsService: UrlaubsServiceService) {
   }
 
   public submit(){
+    this.urlaubsService.postUrlaub({
+      username: this.keycloakService.getUsername(),
+      startDate: this.fromDate!,
+      endDate: this.toDate!,
+      type: this.typeVal,
+      description: this.description? this.description: '',
+      status: "bearbeitung"
+    })
     console.log(this.typeVal, this.fromDate, this.toDate, this.description)
     this.reset();
   }

@@ -60,4 +60,8 @@ export class Tab1Page {
   getspecialvacationdays() {
 
   }
+
+  deleteVacation(vacation: Urlaub) {
+    this.urlaubsService.deleteUrlaub(vacation.id)
+  }
 }

@@ -10,30 +10,25 @@ ion-col {
   align-items: center;
 }
 
-.grayRow {
-  background-color: #E4E4E4;
-}
-
-.whiteRow {
-  background-color: #FFFFFF;
-}
-
-.gridHeader {
+ion-col.gridHeader {
   font-size: 18px;
   font-weight: bold;
   text-decoration: underline;
   padding: 1em 0em;
-  background-color: #E4E4E4;
+  background-color: #CCCCCC;
 }
 
-.vacationStateApproved {
-  color: #28A745;
+ion-col.vacationStateApproved {
+  background-color: #8AE89D;
+  color: #000000;
 }
 
-.vacationStateRejected {
-  color: #ff0000;
+ion-col.vacationStatePending {
+  background-color: #FDFDC1;
+  color: #000000;
 }
 
-.vacationStatePending {
-  color: #FFC107;
+ion-col.vacationStateRejected {
+  background-color: #FF6B6B;
+  color: #000000;
 }
