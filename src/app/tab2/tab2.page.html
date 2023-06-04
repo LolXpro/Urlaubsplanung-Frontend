@@ -27,7 +27,7 @@
       <ion-datetime-button datetime="from" slot="left"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="from" presentation="date" [(ngModel)]="fromDate" (ionChange)="toDate = fromDate" show-default-buttons="true"></ion-datetime>
+          <ion-datetime id="from" presentation="date" [(ngModel)]="fromDate" (ionChange)="toDate = fromDate" [min]="getTomorrowString()" show-default-buttons="true"></ion-datetime>
         </ng-template>
       </ion-modal>
 

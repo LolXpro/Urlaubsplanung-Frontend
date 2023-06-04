@@ -11,7 +11,8 @@ export class Tab2Page {
   toDate: Date | undefined;
   description: string | undefined;
 
-  constructor() {}
+  constructor() {
+  }
 
   public submit(){
     console.log(this.typeVal, this.fromDate, this.toDate, this.description)
@@ -20,8 +21,8 @@ export class Tab2Page {
 
   public reset() {
     this.typeVal = 'urlaub'
-    this.fromDate = undefined
-    this.toDate = undefined
+    this.fromDate = undefined;
+    this.toDate = undefined;
     this.description = undefined;
   }
   handleRefresh(event:any) {
@@ -29,5 +30,11 @@ export class Tab2Page {
       this.reset();
       event.target.complete();
     }, 20);
+  }
+
+  getTomorrowString(): string {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
   }
 }
