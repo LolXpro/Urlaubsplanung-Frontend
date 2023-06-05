@@ -11,20 +11,18 @@ import {UrlaubsServiceService} from "../shared/service/urlaubs-service.service";
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page {
-  vacationList: Array<any>
   urlaubsListeBearbeitung$: Observable<Urlaub[]>;
   urlaubsListeGenehmigt$: Observable<Urlaub[]>;
   urlaubsListeAbgelehnt$: Observable<Urlaub[]>;
+  urlaubstage$: Observable<number>;
+  sonderurlaubstage$: Observable<number>;
 
   constructor(private keycloakService: KeycloakService, private urlaubsService: UrlaubsServiceService) {
     this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
     this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
     this.urlaubsListeAbgelehnt$ = this.getUrlaube("abgelehnt");
-  this.vacationList = [
-                        { state: 'Genehmigt', startDate: '2023-06-01', endDate: '2023-06-05' },
-                        { state: 'Abgelehnt', startDate: '2023-06-10', endDate: '2023-06-15' },
-                        { state: 'In Bearbeitung', startDate: '2023-07-05', endDate: '2023-07-08' }
-                      ];
+    this.urlaubstage$=this.getUrlabstage();
+    this.sonderurlaubstage$=this.getSonderurlabstage();
   }
 
   public getUrlaube(status?: string): Observable<Urlaub[]>{
@@ -36,32 +34,44 @@ export class Tab1Page {
   }
   rejectVacation(vacation: any) {
     this.urlaubsService.putUrlaubStatus(vacation.id, "abgelehnt")
+    console.log('Urlaub abgelehnt:', vacation);
     this.updateData();
     // Index des Urlaubs in der vacationList finden
-    console.log('Urlaub abgelehnt:', vacation);
   }
 
-  updateData(){
-    this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
-    this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
+  public updateData(){
+    setTimeout(() => {
+      this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
+      this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
+      this.urlaubsListeAbgelehnt$ = this.getUrlaube("abgelehnt");
+      this.urlaubstage$=this.getUrlabstage();
+      this.sonderurlaubstage$=this.getSonderurlabstage();
+    }, 750); // Verzögerung von 2000 Millisekunden (2 Sekunden)
   }
 
   handleRefresh(event:any) {
     setTimeout(() => {
       this.updateData();
       event.target.complete();
-    }, 2000);
+    }, 500);
   }
 
-  getvacationdays() {
 
-  }
-
-  getspecialvacationdays() {
-
-  }
 
   deleteVacation(vacation: Urlaub) {
     this.urlaubsService.deleteUrlaub(vacation.id)
+    this.updateData()
+  }
+
+ ionViewWillEnter() {
+    this.updateData()
+ }
+
+  private getUrlabstage() {
+    return this.urlaubsService.getUrlaubstage(this.getUsername(),'normal');
+  }
+
+  private getSonderurlabstage() {
+    return this.urlaubsService.getUrlaubstage(this.getUsername(),'special');
   }
 }

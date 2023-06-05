@@ -15,8 +15,8 @@
     <ion-card-subtitle>Hier deine Urlaubsübersicht:</ion-card-subtitle>
 
     <ion-card-content>
-      <p>Urlaubstage verbleibend: {{getvacationdays()}}</p>
-      <p>Sonderurlabustage verbleibend: {{getspecialvacationdays()}}</p>
+      <p *ngIf="urlaubstage$ | async as tage">Urlaubstage verbleibend: {{tage}}</p>
+      <p *ngIf="sonderurlaubstage$ | async as tage">Sonderurlabustage verbleibend: {{tage}}</p>
       <br />
 
       <ion-grid [fixed]="true">

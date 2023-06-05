@@ -8,7 +8,7 @@ import {Observable} from "rxjs";
 })
 export class UrlaubsServiceService {
 
-  baseUrl = 'http://localhost:8081/urlaube'
+  baseUrl = 'http://localhost:8081/'
 
   constructor(private http: HttpClient) { }
 
@@ -16,7 +16,7 @@ export class UrlaubsServiceService {
     let params = new HttpParams()
     if(status){params = params.append('status', status)}
     if(username){params = params.append('username', username)}
-    return this.http.get<Urlaub[]>(this.baseUrl, {params})
+    return this.http.get<Urlaub[]>(this.baseUrl + 'urlaube', {params})
   }
 
   postUrlaub(urlaub: {
@@ -27,15 +27,21 @@ export class UrlaubsServiceService {
     description: string;
     status: string;
   }){
-    this.http.post(this.baseUrl, urlaub).subscribe()
+    this.http.post(this.baseUrl + 'urlaube' , urlaub).subscribe()
   }
 
   putUrlaubStatus(id: number, status: string) {
     let params = new HttpParams().append('status', status)
-    this.http.put(this.baseUrl + '/' + id, null, {params}).subscribe()
+    this.http.put(this.baseUrl + 'urlaube/' + id, null, {params}).subscribe()
   }
 
   deleteUrlaub(id: number){
-    this.http.delete(this.baseUrl + '/' + id).subscribe()
+    this.http.delete(this.baseUrl + 'urlaube/' + id).subscribe()
   }
+
+  getUrlaubstage(username:string,typ:string):Observable<number>{
+    let params = new HttpParams().append('typ' , typ);
+    return this.http.get<number>(this.baseUrl + 'benutzer/'+username, {params})
+  }
+
 }

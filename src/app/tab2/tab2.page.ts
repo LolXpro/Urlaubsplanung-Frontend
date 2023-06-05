@@ -8,7 +8,7 @@ import {KeycloakService} from "keycloak-angular";
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  typeVal: string = 'urlaub';
+  typeVal: string = 'normal';
   fromDate: Date | undefined;
   toDate: Date | undefined;
   description: string | undefined;
@@ -17,6 +17,7 @@ export class Tab2Page {
   }
 
   public submit(){
+
     this.urlaubsService.postUrlaub({
       username: this.keycloakService.getUsername(),
       startDate: this.fromDate!,
@@ -27,10 +28,11 @@ export class Tab2Page {
     })
     console.log(this.typeVal, this.fromDate, this.toDate, this.description)
     this.reset();
+
   }
 
   public reset() {
-    this.typeVal = 'urlaub'
+    this.typeVal = 'normal'
     this.fromDate = undefined;
     this.toDate = undefined;
     this.description = undefined;
@@ -47,4 +49,9 @@ export class Tab2Page {
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split('T')[0];
   }
+
+  ionViewWillEnter() {
+    this.reset()
+  }
+
 }

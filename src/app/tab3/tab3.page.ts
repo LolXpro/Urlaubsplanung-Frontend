@@ -25,28 +25,32 @@ export class Tab3Page {
 
   acceptVacation(vacation: any) {
     this.urlaubsService.putUrlaubStatus(vacation.id, "genehmigt")
-    this.updateData();
-    // Logik für das Akzeptieren des Urlaubs hier ausführen
     console.log('Urlaub akzeptiert:', vacation);
+    this.updateData();
   }
 
   rejectVacation(vacation: any) {
     this.urlaubsService.putUrlaubStatus(vacation.id, "abgelehnt")
-    this.updateData();
-    // Index des Urlaubs in der vacationList finden
     console.log('Urlaub abgelehnt:', vacation);
+    this.updateData();
   }
 
   updateData(){
+    setTimeout(() => {
     this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
     this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
+    }, 750);
   }
 
   handleRefresh(event:any) {
     setTimeout(() => {
       this.updateData();
       event.target.complete();
-    }, 2000);
+    }, 1000);
+  }
+
+  ionViewWillEnter() {
+    this.updateData()
   }
 
 }
