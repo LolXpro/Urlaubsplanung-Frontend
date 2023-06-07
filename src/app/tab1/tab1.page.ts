@@ -32,7 +32,7 @@ export class Tab1Page {
   public getUsername(){
     return this.keycloakService.getUsername()
   }
-  rejectVacation(vacation: any) {
+  public rejectVacation(vacation: any) {
     this.urlaubsService.putUrlaubStatus(vacation.id, "abgelehnt")
     console.log('Urlaub abgelehnt:', vacation);
     this.updateData();
@@ -49,7 +49,7 @@ export class Tab1Page {
     }, 750); // Verzögerung von 2000 Millisekunden (2 Sekunden)
   }
 
-  handleRefresh(event:any) {
+  public handleRefresh(event:any) {
     setTimeout(() => {
       this.updateData();
       event.target.complete();
@@ -58,7 +58,7 @@ export class Tab1Page {
 
 
 
-  deleteVacation(vacation: Urlaub) {
+  public deleteVacation(vacation: Urlaub) {
     this.urlaubsService.deleteUrlaub(vacation.id)
     this.updateData()
   }

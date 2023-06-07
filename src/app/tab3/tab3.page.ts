@@ -23,26 +23,26 @@ export class Tab3Page {
   }
 
 
-  acceptVacation(vacation: any) {
+  public acceptVacation(vacation: any) {
     this.urlaubsService.putUrlaubStatus(vacation.id, "genehmigt")
     console.log('Urlaub akzeptiert:', vacation);
     this.updateData();
   }
 
-  rejectVacation(vacation: any) {
+  public rejectVacation(vacation: any) {
     this.urlaubsService.putUrlaubStatus(vacation.id, "abgelehnt")
     console.log('Urlaub abgelehnt:', vacation);
     this.updateData();
   }
 
-  updateData(){
+  private updateData(){
     setTimeout(() => {
     this.urlaubsListeBearbeitung$ = this.getUrlaube('bearbeitung');
     this.urlaubsListeGenehmigt$ = this.getUrlaube("genehmigt");
     }, 750);
   }
 
-  handleRefresh(event:any) {
+  public handleRefresh(event:any) {
     setTimeout(() => {
       this.updateData();
       event.target.complete();

@@ -37,14 +37,14 @@ export class Tab2Page {
     this.toDate = undefined;
     this.description = undefined;
   }
-  handleRefresh(event:any) {
+  public handleRefresh(event:any) {
     setTimeout(() => {
       this.reset();
       event.target.complete();
     }, 20);
   }
 
-  getTomorrowString(): string {
+  public getTomorrowString(): string {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     return tomorrow.toISOString().split('T')[0];
