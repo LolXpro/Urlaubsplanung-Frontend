@@ -6,5 +6,5 @@ export interface Urlaub {
   type: string;
   description: string;
   status: string;
-
+  vertretung: string;
 }

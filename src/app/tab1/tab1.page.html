@@ -24,7 +24,8 @@
           <ion-col class="gridHeader">Status:</ion-col>
           <ion-col class="gridHeader">Erster Urlaubstag:</ion-col>
           <ion-col class="gridHeader">Letzter Urlaubstag:</ion-col>
-          <ion-col class="gridHeader">Beschreibung</ion-col>
+          <ion-col class="gridHeader">Beschreibung:</ion-col>
+          <ion-col class="gridHeader">Vertretung:</ion-col>
           <ion-col class="gridHeader">Aktion:</ion-col>
         </ion-row>
 
@@ -34,6 +35,7 @@
             <ion-col class="vacationStatePending">{{ vacation.startDate }}</ion-col>
             <ion-col class="vacationStatePending">{{ vacation.endDate}}</ion-col>
             <ion-col class="vacationStatePending">{{ vacation.description}}</ion-col>
+            <ion-col class="vacationStatePending">{{ vacation.vertretung}}</ion-col>
             <ion-col class="vacationStatePending">
               <ion-button color="tertiary" (click)="rejectVacation(vacation)"> Ablehnen</ion-button>
             </ion-col>
@@ -47,6 +49,7 @@
             <ion-col class="vacationStateApproved">{{ vacation.startDate }}</ion-col>
             <ion-col class="vacationStateApproved">{{ vacation.endDate}}</ion-col>
             <ion-col class="vacationStateApproved">{{ vacation.description}}</ion-col>
+            <ion-col class="vacationStateApproved">{{ vacation.vertretung}}</ion-col>
             <ion-col class="vacationStateApproved">
               <ion-button color="tertiary" (click)="rejectVacation(vacation)">Ablehnen</ion-button>
             </ion-col>
@@ -59,6 +62,7 @@
             <ion-col class="vacationStateRejected">{{ vacation.startDate }}</ion-col>
             <ion-col class="vacationStateRejected">{{ vacation.endDate }}</ion-col>
             <ion-col class="vacationStateRejected">{{ vacation.description}}</ion-col>
+            <ion-col class="vacationStateRejected">{{ vacation.vertretung}}</ion-col>
             <ion-col class="vacationStateRejected">
               <ion-button color="tertiary" (click)="deleteVacation(vacation)">
               <ion-icon slot="start" name="trash"></ion-icon> Löschen</ion-button>

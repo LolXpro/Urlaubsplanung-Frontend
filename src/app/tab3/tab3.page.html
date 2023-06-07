@@ -22,6 +22,7 @@
             <ion-label>Enddatum: {{urlaub.endDate}}</ion-label>
             <ion-label>Urlaubstyp: {{urlaub.type}}</ion-label>
             <ion-label>Beschreibung: {{urlaub.description}}</ion-label>
+            <ion-label>Vertretung: {{urlaub.vertretung}}</ion-label>
           </ion-item>
 
           <ion-item-options side="start" (ionSwipe)="rejectVacation(urlaub)">
@@ -52,14 +53,7 @@
           <ion-label>Enddatum: {{urlaub.endDate}}</ion-label>
           <ion-label>Urlaubstyp: {{urlaub.type}}</ion-label>
           <ion-label>Beschreibung: {{urlaub.description}}</ion-label>
-
-
-          <!--          &lt;!&ndash; Urlaubsdaten anzeigen &ndash;&gt;-->
-          <!--          <ion-label>-->
-          <!--            {{ vacation.startDate }} - {{ vacation.endDate }}-->
-          <!--          </ion-label>-->
-          <!--          &lt;!&ndash; Weitere Attribute anzeigen &ndash;&gt;-->
-          <!--          <ion-label slot="end">{{ vacation.attribute }}</ion-label>-->
+          <ion-label>Vertretung: {{urlaub.vertretung}}</ion-label>
         </ion-item>
       </ion-list>
     </ion-card-content>
